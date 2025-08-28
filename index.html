@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FutScout — Player Finder (Online-Ready)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">⚽ FutScout</div>
+      <div class="actions">
+        <button id="exportCsv">Export CSV</button>
+        <button id="importJson">Import JSON</button>
+        <input type="file" id="file" accept="application/json" hidden/>
+      </div>
+    </header>
+
+    <section class="filters card">
+      <div class="row">
+        <input id="q" placeholder="Oyuncu ara (isim) — örn: ronaldo, arda, messi" />
+        <select id="pos">
+          <option value="">Mevki (hepsi)</option>
+          <option value="GK">GK</option>
+          <option value="DF">DF</option>
+          <option value="MF">MF</option>
+          <option value="FW">FW</option>
+        </select>
+        <div class="multibox">
+          <label>Uyruk</label>
+          <select id="nat" multiple size="6"></select>
+        </div>
+        <div class="multibox">
+          <label>Kulüp</label>
+          <select id="club" multiple size="6"></select>
+        </div>
+      </div>
+      <div class="row row2">
+        <div class="range">
+          <label>Yaş</label>
+          <input type="range" id="ageMin" min="15" max="45" value="15"/>
+          <input type="range" id="ageMax" min="15" max="45" value="45"/>
+          <div class="range-label"><span id="ageLbl">15–45</span></div>
+        </div>
+        <div class="range">
+          <label>Değer (€m)</label>
+          <input id="valMin" type="number" placeholder="min" step="0.5" min="0"/>
+          <span>–</span>
+          <input id="valMax" type="number" placeholder="max" step="0.5" min="0"/>
+        </div>
+        <select id="sort">
+          <option value="value_desc">Sırala: Değer ↓</option>
+          <option value="value_asc">Sırala: Değer ↑</option>
+          <option value="age_asc">Sırala: Yaş ↑</option>
+          <option value="age_desc">Sırala: Yaş ↓</option>
+          <option value="name_asc">Sırala: İsim A→Z</option>
+        </select>
+        <button id="apply">Uygula</button>
+        <button id="clear" class="ghost">Temizle</button>
+      </div>
+      <small class="muted">Tamamen statik/online çalışır (GitHub Pages uyumlu). Görseller <code>assets/</code> klasöründe.</small>
+    </section>
+
+    <section class="results card">
+      <div class="count"><span id="count">0</span> oyuncu</div>
+      <div id="cards" class="grid"></div>
+      <div id="empty" class="empty" hidden>Sonuç bulunamadı.</div>
+    </section>
+
+    <footer class="foot">
+      <small>FutScout — Transfermarkt tarzı arama. <strong>Çoklu seçim</strong>, <strong>çift sürgü</strong>, <strong>detay paneli</strong>.</small>
+    </footer>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal-backdrop" id="closeModal"></div>
+    <div class="modal-card">
+      <button class="close" id="xClose">✕</button>
+      <div class="profile">
+        <div class="big-avatar"><img id="m_img" alt=""/></div>
+        <div class="info">
+          <h2 id="m_name"></h2>
+          <div class="meta">
+            <span id="m_pos" class="chip"></span>
+            <span id="m_age" class="chip"></span>
+            <span class="chip"><img id="m_flag" class="chip-img" alt=""/> <span id="m_nat"></span></span>
+            <span class="chip"><img id="m_clublogo" class="chip-img" alt=""/> <span id="m_club"></span></span>
+          </div>
+          <div class="value">Piyasa Değeri: <strong id="m_val"></strong></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div><b>Sözleşme:</b> <span id="m_contract"></span></div>
+        <div><b>Boy / Kilo:</b> <span id="m_hw"></span></div>
+        <div><b>Tercih edilen ayak:</b> <span id="m_foot"></span></div>
+        <div><b>İstatistik:</b> <span id="m_stats"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
