@@ -3,27 +3,29 @@
 **Live Demo:** https://enesmyildiz.github.io/futscout/  
 **Repo:** https://github.com/enesmyildiz/futscout
 
-![stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS-informational)
+![FutScout hero](screenshots/hero.png)
+
+![stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20Vanilla%20JS-informational)
 ![backend](https://img.shields.io/badge/backend-none-green)
 ![license](https://img.shields.io/badge/license-MIT-blue)
 ![status](https://img.shields.io/badge/last_update-2025-08-29-brightgreen)
 
-FutScout; futbolcuları **isim, mevki, yaş, uyruk, kulüp** ve **piyasa değeri** filtreleriyle aramanı sağlar. **Çoklu seçim**, **çift yaş slider’ı**, **detay modali** ve **CSV/JSON** desteğiyle tamamen **statik** ve **GitHub Pages** ile uyumlu çalışır.
+FutScout is a **Transfermarkt-like** player finder you can run as a **fully static website** (no backend). Search and filter players by **name, position, age, nationality, club, and market value**, view **rich detail modals**, and export/import data.
 
 ## ✨ Features
-- Çoklu seçim filtreleri: **Uyruk** ve **Kulüp** (birden fazla seçim).
-- **Çift sürgülü** yaş filtresi, değer (€m) aralığı ve sıralama.
-- **Oyuncu detay paneli:** sözleşme, boy/kilo, tercih edilen ayak, temel istatistikler.
-- **Görseller:** Wikipedia/FlagCDN’den otomatik (ya da telifsiz yerel SVG avatarlar).
-- **Export CSV / Import JSON** (backend yok).
+- **Multi-select filters**: Nationality & Club (select multiple).
+- **Dual age slider** and value (€m) range + sorting.
+- **Player detail modal**: contract, height/weight, preferred foot, basic stats.
+- **Realistic imagery**: Wikipedia / FlagCDN at runtime (or local SVG placeholders).
+- **CSV export** and **JSON import**; deployable on **GitHub Pages**.
 
 ## 🚀 Quick Start
-1. Bu projeyi klonla veya indir:  
-   ```bash
-   git clone https://github.com/enesmyildiz/futscout
-   ```
-2. Yerelde `index.html`’i aç veya **Settings → Pages**’ten `main / (root)` ile yayına al.
-3. (Opsiyonel) `app.js` içindeki `PLAYERS` dizisine oyuncu ekle/güncelle.
+1) Clone or download the repo.
+```bash
+git clone https://github.com/enesmyildiz/futscout
+```
+2) Open `index.html` locally **or** enable GitHub Pages: **Settings → Pages →** Source: *Deploy from a branch* → **Branch:** `main` → **Folder:** `/ (root)` → **Save**.  
+3) (Optional) Add or update players in `app.js` (`PLAYERS` array).
 
 ## 🧩 Data Model
 ```js
@@ -34,16 +36,18 @@ FutScout; futbolcuları **isim, mevki, yaş, uyruk, kulüp** ve **piyasa değeri
 }
 ```
 
-## 🔄 Güncelleme (Kulüp Düzeltme)
-- **Hızlı düzeltme:** `app.js` → ilgili oyuncunun `club` alanını değiştir → commit.
-- **Toplu düzeltme:** JSON import.
-- **Otomatik güncelleme sürümü:** `futscout-wiki-updater` branch’inde **Güncelle (Wiki)** butonu.
+## 🔄 Keeping Clubs Up‑to‑Date
+- **Manual:** edit `app.js` and change `club` for the relevant player, then commit.
+- **Bulk:** use the JSON import button in the UI.
+- **Auto (optional build):** a *Wiki Updater* version adds a **“Update (Wiki)”** button that tries to infer the current club from each player’s Wikipedia summary.
+
+## 🧰 Tech Stack
+- **Frontend:** HTML, CSS, Vanilla JS
+- **Images:** Wikipedia Summary API (thumbnails) & FlagCDN (flags)
+- **Hosting:** GitHub Pages (static)
 
 ## 🗺️ Roadmap
-- Virtualized list, preset filtreler, mobil ince ayar, performans optimizasyonu.
+- Virtualized list, saved filter presets, mobile polish, performance tuning.
 
-## 📸 Screenshot
-_(screenshots/hero.png ekleyin)_
-
-## 📄 License
+## 📝 License
 MIT
